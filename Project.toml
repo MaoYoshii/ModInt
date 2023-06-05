@@ -1,0 +1,4 @@
+name = "ModInt"
+uuid = "90976a09-f6b6-4416-8d2f-b3bd50de03e0"
+authors = ["MaoYoshii <mao@g.ecc.u-tokyo.ac.jp>"]
+version = "0.1.0"
