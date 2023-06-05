@@ -1,10 +1,9 @@
 module ModInt
     import Base: \, /, *, ^, +, -, show
 
-    include("operators.jl")
+    include("./operators.jl")
     include("mint.jl")
 
-    export MInt, modulus, value
     module 1000000007 
         include("1000000007.jl")       
     end

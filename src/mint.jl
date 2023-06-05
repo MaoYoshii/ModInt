@@ -12,3 +12,5 @@ _value(x::MInt) = x.MInt
 function Base.show(io::IO, x::MInt)
     print( io, _value(x))
 end
+
+export MInt, modulus, value
