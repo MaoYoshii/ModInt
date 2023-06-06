@@ -3,7 +3,6 @@ module ModInt
 
     include("mint.jl")
     include("./operators.jl")
-
     module mod1000000007
         include("1000000007.jl")       
     end
