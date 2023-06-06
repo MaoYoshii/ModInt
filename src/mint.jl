@@ -13,4 +13,4 @@ function Base.show(io::IO, x::MInt)
     print( io, _value(x))
 end
 
-export MInt, modulus, value
+export MInt, modulus, _value
