@@ -5,6 +5,7 @@ module ModInt
         include("mint.jl")
         include("operators.jl")
         include("types.jl")
+        export MInt, modulus, value 
     end
     module mod1000000007
         include("1000000007.jl")
