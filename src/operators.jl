@@ -70,10 +70,22 @@ else
     return c*c
 end
 
-Base.inv(a::MInt ; prime = false) = if prime
+function _ext_euclid(X,MOD)
+    Y = MOD
+    aₖ, bₖ, aₖ₊₁, bₖ₊₁ = 0, 1, 1, 0 
+    while X != 0
+        d,r = divrem(Y,X)
+        X, Y = r, X
+        aₖ, aₖ₊₁ = aₖ₊₁, aₖ - d*aₖ₊₁
+        bₖ, bₖ₊₁ = bₖ₊₁, bₖ - d*bₖ₊₁
+    end
+    mod(aₖ,MOD)
+end
+
+Base.inv(a::MInt ; prime = true) = if prime
     a^(modulus(a)-2)
 else
-    #gcd 
+    _ext_euclid(value(a),modulus(a)) 
 end
 
 Base.:÷(a::MInt, b::Int) = MInt(value(a)*inv((b,modulus(a))),modulus(a))

@@ -1,5 +1,5 @@
 module ModInt
-    module mod
+    module modint
         import Base: \, /, *, ^, +, -, show
         import Base: Integer,Int8,Int16,Int32,Int64,Int128
         include("mint.jl")
