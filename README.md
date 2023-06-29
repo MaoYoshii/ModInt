@@ -25,6 +25,6 @@ In `mod1000000007` and `mod998244353`, we use Fermat's little theorem. In `modin
 In default, `inv` uses Fermat's little theorem regardless of mod. Thus, we should use `inv(x,prime = false)`
 ```julia
     using ModInt.modint
-    a = MInt(5,10)
-    
+    a = MInt(7,10)
+    inv(a,prime = false) # 3
 ```
