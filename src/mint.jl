@@ -1,15 +1,11 @@
 struct MInt{T,S} <: Integer
     MInt :: T
     MOD :: S
-    function MInt(a::T,MOD::S) where {T,S}
-        if 0 ≤ a < MOD
-            new{T,S}(a,MOD)
-        else
-            new{T,S}(mod(a,MOD),MOD)
-        end
+    global function _unsafe_mint(a::T,MOD::S) where {T,S}
+         new{T,S}(a,MOD)
     end
 end
-new(a,MOD) = new{typeof(a),typeof(MOD)}(a,MOD)
+MInt(a,MOD) = _unsafe_mint( ifelse(a<0,a%MOD+MOD,a%MOD),MOD)
 modulus(x::MInt) = x.MOD
 value(x::MInt) = x.MInt
 

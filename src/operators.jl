@@ -4,27 +4,15 @@ Base.:>>(a::MInt, b::Int) = MInt(value(a)>>b,modulus(a))
 
 Base.:+(a::MInt, b::Int) = MInt(value(a)+b,modulus(a))
 Base.:+(a::Int, b::MInt) = MInt(a+value(b),modulus(b))
-Base.:+(a::MInt, b::MInt) = if modulus(a) == modulus(b)
-    MInt(value(a)+value(b),modulus(a))
-else
-    error("mudulus needs to be the same")
-end
+Base.:+(a::MInt, b::MInt) = _unsafe_mint( value(a)+value(b) |> x -> ifelse(x > modulus(a), x-modulus(a),x),modulus(a))
 
 Base.:-(a::MInt, b::Int) = MInt(value(a)-b,modulus(a))
 Base.:-(a::Int, b::MInt) = MInt(a-value(b),modulus(b))
-Base.:-(a::MInt, b::MInt) = if modulus(a) == modulus(b)
-    MInt(value(a)-value(b),modulus(a))
-else
-    error("mudulus needs to be the same")
-end
+Base.:-(a::MInt, b::MInt) = _unsafe_mint( value(a)-value(b) |> x -> ifelse(x < 0, x+modulus(a),x),modulus(a))
 
 Base.:*(a::MInt, b::Int) = MInt(value(a)*b,modulus(a))
 Base.:*(a::Int, b::MInt) = MInt(a*value(b),modulus(b))
-Base.:*(a::MInt, b::MInt) = if modulus(a) == modulus(b)
-    MInt(value(a)*value(b),modulus(a))
-else
-    error("mudulus needs to be the same")
-end
+Base.:*(a::MInt, b::MInt) = _unsafe_mint( value(a)*value(b)%modulus(a),modulus(a))
 
 Base.:^(a::MInt, b::Int) = if b < 0
     error("power must be an Integer")
